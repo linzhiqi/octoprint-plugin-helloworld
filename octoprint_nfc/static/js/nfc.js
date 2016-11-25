@@ -1,5 +1,5 @@
 $(function() {
-    function HelloWorldViewModel(parameters) {
+    function NfcViewModel(parameters) {
         var self = this;
         console.log("My tag: inside HelloWorldViewModel")
         self.settings = parameters[0];
@@ -23,7 +23,7 @@ $(function() {
         // the SettingsViewModel been properly populated.
         self.onBeforeBinding = function() {
             console.log("My tab: onBeforeBinding is called")
-            self.newUrl(self.settings.settings.plugins.helloworld.url());
+            self.newUrl(self.settings.settings.plugins.nfc.url());
             self.goToUrl();
         }
     }
@@ -32,7 +32,7 @@ $(function() {
     // information to the global variable OCTOPRINT_VIEWMODELS
     OCTOPRINT_VIEWMODELS.push([
         // This is the constructor to call for instantiating the plugin
-        HelloWorldViewModel,
+        NfcViewModel,
 
         // This is a list of dependencies to inject into the plugin, the order which you request
         // here is the order in which the dependencies will be injected into your view model upon
@@ -40,6 +40,6 @@ $(function() {
         ["settingsViewModel"],
 
         // Finally, this is the list of selectors for all elements we want this view model to be bound to.
-        ["#tab_plugin_helloworld"]
+        ["#tab_plugin_nfc"]
     ]);
 });

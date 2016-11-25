@@ -4,7 +4,7 @@ from __future__ import absolute_import
 import octoprint.plugin
 import logging
 
-class HelloWorldPlugin(octoprint.plugin.StartupPlugin,
+class NfcPlugin(octoprint.plugin.StartupPlugin,
 	octoprint.plugin.TemplatePlugin,
 	octoprint.plugin.SettingsPlugin,
 	octoprint.plugin.AssetPlugin):
@@ -25,10 +25,10 @@ class HelloWorldPlugin(octoprint.plugin.StartupPlugin,
 	def get_assets(self):
 		self._logger.info("My tag: inside HelloWorldPlugin.get_assets")
 		return dict(
-			js=["js/helloworld.js"]
+			js=["js/nfc.js"]
 		)
 
 #__plugin_name__ = "Hello World"
 
-__plugin_implementation__ = HelloWorldPlugin()
+__plugin_implementation__ = NfcPlugin()
 
