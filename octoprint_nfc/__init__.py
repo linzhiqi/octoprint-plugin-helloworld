@@ -35,21 +35,21 @@ class NfcPlugin(octoprint.plugin.StartupPlugin,
 
 	def on_api_get(self, request):
 		# Scan for cards    
-	    (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+		(status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
-	    # If a card is found
-	    if status == MIFAREReader.MI_OK:
-	        print "Card detected"
+		# If a card is found
+		if status == MIFAREReader.MI_OK:
+			print "Card detected"
 	    
-	    # Get the UID of the card
-	    (status,uid) = MIFAREReader.MFRC522_Anticoll()
+		# Get the UID of the card
+		(status,uid) = MIFAREReader.MFRC522_Anticoll()
 
-	    # If we have the UID, continue
-	    if status == MIFAREReader.MI_OK:
-	        lNum = uid
-            return flask.jsonify(UID=uid)
-        else:
-            return flask.jsonify(UID=lNum)
+		# If we have the UID, continue
+		if status == MIFAREReader.MI_OK:
+			lNum = uid
+			return flask.jsonify(UID=uid)
+		else:
+			return flask.jsonify(UID=lNum)
 #__plugin_name__ = "Hello World"
 
 __plugin_implementation__ = NfcPlugin()
