@@ -1,1 +1,97 @@
-<iframe data-bind="attr: {src: currentUrl}" style="width: 100%; height: 600px; border: 1px solid #808080"></iframe>
+<title>RFID</title>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link href='https://cdn.luigifreitas.me/animate.css' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.js"></script>-->
+
+	<style>
+		body {
+			left: 0%;
+			top: 0%;
+			width: 100%;
+			height: 100%;
+			overflow:hidden;
+			position: absolute;
+			background-color: #ededed;
+		}
+		.box {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+
+			padding-left: 0%;
+			border-radius: 8px;
+			background-color: white;
+			border: 1px solid #b6b6b6;
+
+			box-shadow: 0px 1px 0px .5px #b6b6b6;
+		}
+		.box:after {
+			padding-top: 80%;
+			display: block;
+			content: '';
+		}
+		.help {
+			width: 100%;
+			color: #606060;
+			font-family: "Open Sans";
+			font-weight: 300;
+			font-size: 25px;
+			text-align: center;
+			-webkit-transitio: all 0.5s ease;
+			-moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+			transition: all 0.5s ease;
+		}
+		.material {
+			width: 100%;
+			color: #606060;
+			font-family: "Open Sans";
+			font-weight: 300;
+			font-size: 25px;
+			text-align: center;
+			-webkit-transitio: all 0.5s ease;
+			-moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+			transition: all 0.5s ease;
+		}
+		.icon {
+			width: 100%;
+			height: 76%;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: 50%;
+			background-image: url("/rfid3.png");
+			-webkit-transitio: all 0.5s ease;
+			-moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+			transition: all 0.5s ease;
+		}
+
+		.one {
+			-webkit-filter: hue-rotate(300deg);
+		}
+	</style>
+
+
+	<body>
+		<div class="box">
+			<div class="icon"></div>
+			<div class="help">
+				Scan your NFC Card.
+			</div>
+			<div class="material">
+			</div>
+		</div>
+	</body>
+
+	<script>
+	// Connects with Server
+	var myMap = new Map();
+	myMap.set('53134322003680', "PLA (Polylactic Acid)");
+	myMap.set('5353222a005180', "ABS (Acrylonitrile Butadiene Styrene)");
+
+	setInterval(myTimeoutFunction(), 1000);
+	</script>

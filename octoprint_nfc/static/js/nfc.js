@@ -26,6 +26,19 @@ $(function() {
             self.newUrl(self.settings.settings.plugins.nfc.url());
             self.goToUrl();
         }
+
+        var lNum = "";
+        self.myTimeoutFunction = function() {
+            $.ajax({
+                    url: API_BASEURL + "/api/plugin/nfc",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    success : function(response, textStatus, jqXhr) {
+                        console.log("response:", response);
+                    }
+            });
+        };
     }
 
     // This is how our plugin registers itself with the application, by adding some configuration
