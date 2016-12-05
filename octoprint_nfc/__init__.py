@@ -46,10 +46,10 @@ class NfcPlugin(octoprint.plugin.StartupPlugin,
 
 	    # If we have the UID, continue
 	    if status == MIFAREReader.MI_OK:
-	    	lNum = uid
-			return flask.jsonify(UID=uid)
-		else:
-			return flask.jsonify(UID=lNum)
+	        lNum = uid
+            return flask.jsonify(UID=uid)
+        else:
+            return flask.jsonify(UID=lNum)
 #__plugin_name__ = "Hello World"
 
 __plugin_implementation__ = NfcPlugin()
