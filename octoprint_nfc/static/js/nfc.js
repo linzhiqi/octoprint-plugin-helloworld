@@ -27,7 +27,10 @@ $(function() {
             self.goToUrl();
         };
     }
-
+    var lNum = "";
+    var myMap = new Map();
+	myMap.set('136,83,83,34', "PLA (Polylactic Acid)");
+	myMap.set('136,83,98,157', "ABS (Acrylonitrile Butadiene Styrene)");
     function myTimeoutFunction() {
       $.ajax({
                     url: API_BASEURL + "plugin/nfc",
@@ -36,7 +39,31 @@ $(function() {
 		    headers: {"X-Api-Key": "C6A337C4314F4D98AC12000A5FEAD2E0"},
                     contentType: "application/json;charset=utf-8",
                     success : function(response, textStatus, jqXhr) {
-                        console.log("response:", response);
+			if (response.UID !== lNum && !!myMap.get(response.UID)){
+				console.log("cNum:", response.UID);
+				$(".icon").addClass('one');
+				$(".help").text("New filament material detected:");
+				$(".material").text(myMap.get(response.UID));
+				setTimeout(function() {
+					$(".icon").removeClass('one');
+					$(".help").text("Configuration is updated");
+				}, 2500);
+			} else if (response.UID !== lNum && !myMap.get(response.UID)){
+				$(".icon").addClass('one');
+				$(".help").text("Unrecognized filament material detected");
+				$(".material").text("");
+				setTimeout(function() {
+					$(".icon").removeClass('one');
+					$(".help").text("Please change to valid filament or configure manually");
+				}, 2500);
+			} else {
+				// do nothing
+				//$(".icon").addClass('one');
+				//setTimeout(function() {
+				//	$(".icon").removeClass('one');
+				//}, 1000);
+			}                        
+			lNum = response.UID;			
                     }
             });
     }

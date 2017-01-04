@@ -1,5 +1,3 @@
-<title>RFID</title>
-	<meta charset="utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link href='https://cdn.luigifreitas.me/animate.css' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
@@ -16,7 +14,7 @@
 			background-color: #ededed;
 		}
 		.box {
-			position: absolute;
+			//position: absolute;
 			width: 100%;
 			height: 100%;
 			background-color: black;
@@ -29,7 +27,7 @@
 			box-shadow: 0px 1px 0px .5px #b6b6b6;
 		}
 		.box:after {
-			padding-top: 80%;
+			//padding-top: 80%;
 			display: block;
 			content: '';
 		}
@@ -40,6 +38,7 @@
 			font-weight: 300;
 			font-size: 25px;
 			text-align: center;
+			margin-bottom: 15px;
 			-webkit-transitio: all 0.5s ease;
 			-moz-transition: all 0.5s ease;
 			-o-transition: all 0.5s ease;
@@ -52,6 +51,7 @@
 			font-weight: 300;
 			font-size: 25px;
 			text-align: center;
+			margin-bottom: 50px;
 			-webkit-transitio: all 0.5s ease;
 			-moz-transition: all 0.5s ease;
 			-o-transition: all 0.5s ease;
@@ -59,11 +59,12 @@
 		}
 		.icon {
 			width: 100%;
-			height: 76%;
+			height: 0;
+			padding-top: 50%;
 			background-position: 50% 50%;
 			background-repeat: no-repeat;
 			background-size: 50%;
-			background-image: url("/rfid3.png");
+			background-image: url("https://raw.githubusercontent.com/Platonics/Raspberry-Pi-RFID/master/rfid3.png");
 			-webkit-transitio: all 0.5s ease;
 			-moz-transition: all 0.5s ease;
 			-o-transition: all 0.5s ease;
@@ -75,8 +76,6 @@
 		}
 	</style>
 
-
-	<body>
 		<div class="box">
 			<div class="icon"></div>
 			<div class="help">
@@ -85,13 +84,9 @@
 			<div class="material">
 			</div>
 		</div>
-	</body>
 
 	<script>
 	// Connects with Server
 	var myMap = new Map();
 	myMap.set('53134322003680', "PLA (Polylactic Acid)");
-	myMap.set('5353222a005180', "ABS (Acrylonitrile Butadiene Styrene)");
-
-	//setInterval(myTimeoutFunction(), 1000);
 	</script>

@@ -442,7 +442,7 @@ class NfcPlugin(octoprint.plugin.StartupPlugin,
 
 		# If we have the UID, continue
 		if status == self.MIFAREReader.MI_OK:
-			return uid
+			return str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
 		else:
 			return lNum
 
