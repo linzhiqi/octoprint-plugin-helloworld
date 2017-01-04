@@ -25,21 +25,23 @@ $(function() {
             console.log("My tab: onBeforeBinding is called")
             self.newUrl(self.settings.settings.plugins.nfc.url());
             self.goToUrl();
-        }
+        };
+    }
 
-        var lNum = "";
-        self.myTimeoutFunction = function() {
-            $.ajax({
-                    url: API_BASEURL + "/api/plugin/nfc",
-                    type: "POST",
+    function myTimeoutFunction() {
+      $.ajax({
+                    url: API_BASEURL + "plugin/nfc",
+                    type: "GET",
                     dataType: "json",
+		    headers: {"X-Api-Key": "C6A337C4314F4D98AC12000A5FEAD2E0"},
                     contentType: "application/json;charset=utf-8",
                     success : function(response, textStatus, jqXhr) {
                         console.log("response:", response);
                     }
             });
-        };
     }
+
+    setInterval(myTimeoutFunction, 1000);
 
     // This is how our plugin registers itself with the application, by adding some configuration
     // information to the global variable OCTOPRINT_VIEWMODELS

@@ -8,6 +8,7 @@ import spi
 import signal
 import time
 import threading
+import flask
 
 class MFRC522:
   NRSTPD = 22
@@ -406,18 +407,27 @@ class NfcPlugin(octoprint.plugin.StartupPlugin,
 	octoprint.plugin.TemplatePlugin,
 	octoprint.plugin.SettingsPlugin,
 	octoprint.plugin.AssetPlugin,
-	octoprint.plugin.SimpleApiPlugin):
+	octoprint.plugin.SimpleApiPlugin,
+	octoprint.plugin.ShutdownPlugin):
 
 	MIFAREReader = MFRC522()
 	lNum = ""
+	keepWorking = True
+
+	def on_shutdown(self):
+		# this is not necessary because the thread is daemon
+		# it will be terminated automatically when main thread is finished
+		self.keepWorking = False
 
 	def worker(self):
 		self.lNum = ""
-		while True:
+		while self.keepWorking:
+			time.sleep(1)
 			cNum = self.work(self.lNum)
 			if cNum != self.lNum:
 				self.lNum = cNum
 				print self.lNum
+		print "thread is going to be terminated"
 
 	def work(self, lNum):
 		# Scan for cards    
@@ -459,22 +469,8 @@ class NfcPlugin(octoprint.plugin.StartupPlugin,
 		)
 
 	def on_api_get(self, request):
-		# Scan for cards    
-		(status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+		return flask.jsonify(UID=self.lNum)
 
-		# If a card is found
-		if status == MIFAREReader.MI_OK:
-			print "Card detected"
-	    
-		# Get the UID of the card
-		(status,uid) = MIFAREReader.MFRC522_Anticoll()
-
-		# If we have the UID, continue
-		if status == MIFAREReader.MI_OK:
-			lNum = uid
-			return flask.jsonify(UID=uid)
-		else:
-			return flask.jsonify(UID=lNum)
 #__plugin_name__ = "Hello World"
 
 __plugin_implementation__ = NfcPlugin()
