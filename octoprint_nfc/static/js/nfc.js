@@ -36,7 +36,8 @@ $(function() {
                     url: API_BASEURL + "plugin/nfc",
                     type: "GET",
                     dataType: "json",
-		    headers: {"X-Api-Key": "C6A337C4314F4D98AC12000A5FEAD2E0"},
+		    // the backend doesn't check if the apikey is correct or not, weird.
+		    headers: {"X-Api-Key": UI_API_KEY},
                     contentType: "application/json;charset=utf-8",
                     success : function(response, textStatus, jqXhr) {
 			if (response.UID !== lNum && !!myMap.get(response.UID)){
@@ -67,7 +68,7 @@ $(function() {
                     }
             });
     }
-
+	console.log("apikey!!!!: ", UI_API_KEY);
     setInterval(myTimeoutFunction, 1000);
 
     // This is how our plugin registers itself with the application, by adding some configuration
