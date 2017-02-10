@@ -1,3 +1,7 @@
+#Note from Zhiqi
+
+check [this](https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi) to set the  dependencies for RFID RC522.
+
 # OctoPrint-Helloworld
 
 **TODO:** Describe what your plugin does.
